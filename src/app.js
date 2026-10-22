@@ -11,9 +11,11 @@ app.get('/', (req, res) => {
 });
 
 const authRoutes = require('./routes/authRoutes');
-const testRoutes = require('./routes/testRoutes');
+const studentRoutes = require('./routes/studentRoutes');
+const teacherRoutes = require('./routes/teacherRoutes');
 
 app.use('/api/auth', authRoutes);
-app.use('/api/test', testRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/teachers', teacherRoutes);
 
 module.exports = app;
