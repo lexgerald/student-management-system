@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Teacher = require('../models/Teacher');
 const handleError = require('../utils/handleError');
+const Course = require('../models/Course');
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -109,6 +110,7 @@ exports.updateTeacher = async (req, res) => {
 // DELETE /api/teachers/:id
 exports.deleteTeacher = async (req, res) => {
   try {
+    await Course.updateMany({ teacher: teacher._id }, { $unset: { teacher: 1 } });
     const teacher = await Teacher.findById(req.params.id);
     if (!teacher) return res.status(404).json({ message: 'Teacher not found' });
 
