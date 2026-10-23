@@ -15,7 +15,11 @@ const studentRoutes = require('./routes/studentRoutes');
 const teacherRoutes = require('./routes/teacherRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
+const gradeRoutes = require('./routes/gradeRoutes');
+const attendanceRoutes = require('./routes/attendanceRoutes');
 
+app.use('/api/grades', gradeRoutes);
+app.use('/api/attendance', attendanceRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
 app.use('/api/auth', authRoutes);

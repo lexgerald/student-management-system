@@ -2,6 +2,8 @@ const User = require('../models/User');
 const Student = require('../models/Student');
 const handleError = require('../utils/handleError');
 const Enrollment = require('../models/Enrollment');
+const Grade = require('../models/Grade');
+const Attendance = require('../models/Attendance');
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -113,6 +115,8 @@ exports.updateStudent = async (req, res) => {
 // DELETE /api/students/:id  (admin)
 exports.deleteStudent = async (req, res) => {
   try {
+    await Grade.deleteMany({ student: student._id });
+    await Attendance.deleteMany({ student: student._id });
     await Enrollment.deleteMany({ student: student._id });
     const student = await Student.findById(req.params.id);
     if (!student) return res.status(404).json({ message: 'Student not found' });

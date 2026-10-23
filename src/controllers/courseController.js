@@ -2,6 +2,8 @@ const Course = require('../models/Course');
 const Teacher = require('../models/Teacher');
 const Enrollment = require('../models/Enrollment');
 const handleError = require('../utils/handleError');
+const Grade = require('../models/Grade');
+const Attendance = require('../models/Attendance');
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -131,6 +133,8 @@ exports.deleteCourse = async (req, res) => {
     const course = await Course.findById(req.params.id);
     if (!course) return res.status(404).json({ message: 'Course not found' });
 
+    await Grade.deleteMany({ course: course._id });
+    await Attendance.deleteMany({ course: course._id });
     await Enrollment.deleteMany({ course: course._id }); // clean up enrollments
     await course.deleteOne();
 
