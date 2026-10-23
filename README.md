@@ -32,6 +32,10 @@ npm run dev
 | `npm start` | Start for production |
 | `npm test` | Run the automated tests |
 
+## Admin Login
+Email: 'admin@sms.com
+Password: Admin@123
+
 ## Project structure
 ```
 src/
@@ -68,7 +72,6 @@ See the live Swagger docs for every endpoint, request body and example.
 ## Limitations and future work
 - Rate limit counters are in memory (would need Redis with multiple servers)
 - No password reset or email verification
-- No frontend yet
 - No refresh tokens
 
 ## Author
