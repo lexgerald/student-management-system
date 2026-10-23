@@ -17,7 +17,7 @@ Node.js, Express, MongoDB (Mongoose), JWT, Joi, Jest, Swagger UI
 
 ## Getting started
 ```bash
-git clone <your-repo-url>
+git clone <repo-url>
 cd student-management-system
 npm install
 cp .env.example .env     # then fill in your values
@@ -33,7 +33,7 @@ npm run dev
 | `npm test` | Run the automated tests |
 
 ## Admin Login
-Email: 'admin@sms.com
+Email: admin@sms.com
 Password: Admin@123
 
 ## Project structure
