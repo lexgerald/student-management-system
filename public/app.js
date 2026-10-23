@@ -137,8 +137,8 @@ function authScreen() {
   const r = S.reg;
   $('#main').innerHTML = `<div class="auth"><h2>${r ? 'Create a student account' : 'Log in'}</h2>
     <form class="card" data-form="${r ? 'register' : 'login'}">
-      ${r ? field('name', 'Full name', 'text', 'required') : ''}${field('email', 'Email', 'email', 'required')}
-      ${field('password', r ? 'Password (8+ chars, letter and number)' : 'Password', 'password', 'required')}
+      ${r ? field('name', 'Full name', 'text', 'required placeholder="Enter your full name"') : ''}${field('email', 'Email', 'email', 'required placeholder="email@example.com"')}
+      ${field('password', r ? 'Password (8+ chars, letter and number)' : 'Password', 'password', 'required placeholder="Enter your password"')}
       <button>${r ? 'Create account' : 'Log in'}</button>
       <button type="button" class="link" data-act="toggle">${r ? 'I already have an account' : 'New student? Create an account'}</button>
     </form></div>`;
