@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
+const handleError = require('../utils/handleError');
 
 // POST /api/auth/register
 exports.register = async (req, res) => {
@@ -27,7 +28,7 @@ exports.register = async (req, res) => {
       token: generateToken(user),
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    handleError(res, error);
   }
 };
 
@@ -54,7 +55,7 @@ exports.login = async (req, res) => {
       token: generateToken(user),
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    handleError(res, error);
   }
 };
 

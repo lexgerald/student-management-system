@@ -6,10 +6,10 @@ const handleError = (res, error) => {
   if (error.name === 'CastError') {
     return res.status(400).json({ message: 'Invalid ID' });
   }
-  if (error.name === 'ValidationError') {
-    return res.status(400).json({ message: error.message });
-  }
-  res.status(500).json({ message: error.message });
+    if (process.env.NODE_ENV !== 'test') console.error(error);
+    res.status(500).json({
+    message: process.env.NODE_ENV === 'production' ? 'Server error' : error.message,
+  });
 };
 
 module.exports = handleError;

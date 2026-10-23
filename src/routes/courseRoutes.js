@@ -1,5 +1,7 @@
 const express = require('express');
 const { protect, authorize } = require('../middleware/authMiddleware');
+const { validate } = require('../middleware/validate');
+const schemas = require('../validators/schemas');
 const {
   createCourse, getCourses, getMyCourses, getCourse,
   updateCourse, assignTeacher, deleteCourse, getCourseStudents,
@@ -22,5 +24,16 @@ router.route('/:id')
 
 router.put('/:id/teacher', authorize('admin'), assignTeacher);
 router.get('/:id/students', authorize('admin', 'teacher'), getCourseStudents);
+
+router.route('/')
+  .get(authorize('admin', 'teacher'), getCourses)
+  .post(authorize('admin'), validate(schemas.createCourse), createCourse);
+
+router.route('/:id')
+  .get(authorize('admin', 'teacher'), getCourse)
+  .put(authorize('admin'), validate(schemas.updateCourse), updateCourse)
+  .delete(authorize('admin'), deleteCourse);
+
+router.put('/:id/teacher', authorize('admin'), validate(schemas.assignTeacher), assignTeacher);
 
 module.exports = router;
