@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -28,10 +29,7 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10kb' }));
 app.use('/api', apiLimiter);
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Student Management System API is running', docs: '/api-docs' });
-});
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
